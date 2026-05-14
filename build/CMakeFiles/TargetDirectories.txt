@@ -1,0 +1,3 @@
+/Users/tobechi/Projects/kombucha/build/CMakeFiles/kombucha.dir
+/Users/tobechi/Projects/kombucha/build/CMakeFiles/edit_cache.dir
+/Users/tobechi/Projects/kombucha/build/CMakeFiles/rebuild_cache.dir

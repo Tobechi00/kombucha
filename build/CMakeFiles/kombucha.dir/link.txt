@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/kombucha.dir/source/client.cpp.o CMakeFiles/kombucha.dir/source/server.cpp.o CMakeFiles/kombucha.dir/source/main.cpp.o CMakeFiles/kombucha.dir/source/network.cpp.o CMakeFiles/kombucha.dir/source/util.cpp.o -o kombucha

@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/tobechi/Projects/kombucha/build",
+  "command": "/usr/bin/c++  -I/Users/tobechi/Projects/kombucha -std=gnu++17 -arch arm64 -o CMakeFiles/kombucha.dir/source/client.cpp.o -c /Users/tobechi/Projects/kombucha/source/client.cpp",
+  "file": "/Users/tobechi/Projects/kombucha/source/client.cpp",
+  "output": "CMakeFiles/kombucha.dir/source/client.cpp.o"
+},
+{
+  "directory": "/Users/tobechi/Projects/kombucha/build",
+  "command": "/usr/bin/c++  -I/Users/tobechi/Projects/kombucha -std=gnu++17 -arch arm64 -o CMakeFiles/kombucha.dir/source/server.cpp.o -c /Users/tobechi/Projects/kombucha/source/server.cpp",
+  "file": "/Users/tobechi/Projects/kombucha/source/server.cpp",
+  "output": "CMakeFiles/kombucha.dir/source/server.cpp.o"
+},
+{
+  "directory": "/Users/tobechi/Projects/kombucha/build",
+  "command": "/usr/bin/c++  -I/Users/tobechi/Projects/kombucha -std=gnu++17 -arch arm64 -o CMakeFiles/kombucha.dir/source/main.cpp.o -c /Users/tobechi/Projects/kombucha/source/main.cpp",
+  "file": "/Users/tobechi/Projects/kombucha/source/main.cpp",
+  "output": "CMakeFiles/kombucha.dir/source/main.cpp.o"
+},
+{
+  "directory": "/Users/tobechi/Projects/kombucha/build",
+  "command": "/usr/bin/c++  -I/Users/tobechi/Projects/kombucha -std=gnu++17 -arch arm64 -o CMakeFiles/kombucha.dir/source/network.cpp.o -c /Users/tobechi/Projects/kombucha/source/network.cpp",
+  "file": "/Users/tobechi/Projects/kombucha/source/network.cpp",
+  "output": "CMakeFiles/kombucha.dir/source/network.cpp.o"
+},
+{
+  "directory": "/Users/tobechi/Projects/kombucha/build",
+  "command": "/usr/bin/c++  -I/Users/tobechi/Projects/kombucha -std=gnu++17 -arch arm64 -o CMakeFiles/kombucha.dir/source/util.cpp.o -c /Users/tobechi/Projects/kombucha/source/util.cpp",
+  "file": "/Users/tobechi/Projects/kombucha/source/util.cpp",
+  "output": "CMakeFiles/kombucha.dir/source/util.cpp.o"
+}
+]
