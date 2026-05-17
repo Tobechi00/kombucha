@@ -7,12 +7,14 @@
 #include <netinet/in.h>
 #include <thread>
 #include <unistd.h>
-#include <errno.h>
-#include "headers/server.h"
+#include "headers/Listener.h"
 #include "headers/subnet.h"
 #include "headers/util.h"
 
-void Server::init(){
+//send and recieve mode
+// assumes client is already active
+
+void Listener::init(){
     //SOCKSTREAM TCP
     // SOCK_DGRAM UDP
 
@@ -30,12 +32,12 @@ void Server::init(){
 
     //add handshake like system
 
-    int server_socket;//domain, type, protocol 0 means do whatever
+    int listener_socket;//domain, type, protocol 0 means do whatever
 
     while(true){
-        server_socket = socket(AF_INET, SOCK_STREAM, 0);
+        listener_socket = socket(AF_INET, SOCK_STREAM, 0);
 
-        if(server_socket >= 0){
+        if(listener_socket >= 0){
             break;
         }
 
@@ -47,11 +49,11 @@ void Server::init(){
 
     //SET SOC OPT???
 
-    //define server address
-    sockaddr_in server_address;
-    server_address.sin_family = AF_INET;//input address family ipv4
-    server_address.sin_port = htons(PORT_NUM);//convert port to network byte order
-    server_address.sin_addr.s_addr = INADDR_ANY;
+    //define Listener address
+    sockaddr_in listener_address;
+    listener_address.sin_family = AF_INET;//input address family ipv4
+    listener_address.sin_port = htons(PORT_NUM);//convert port to network byte order
+    listener_address.sin_addr.s_addr = INADDR_ANY;
 
     //Binding of a socket is done to address and port in order to receive data on this socket
     // assign a name to a socket
@@ -59,7 +61,7 @@ void Server::init(){
     int bind_val; ;
 
     while(true){
-        bind_val = bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address));
+        bind_val = bind(listener_socket, (struct sockaddr*)&listener_address, sizeof(listener_address));
 
         if(bind_val == 0){//successful bind
             break;
@@ -75,11 +77,13 @@ void Server::init(){
     //listen for connections
     // In simple words, the backlog parameter specifies the number of pending connections the queue will hold.
 
-    //When multiple clients connect to the server, the server then holds the incoming requests in a queue.
-    //The clients are arranged in the queue, and the server processes their requests one by one as and when queue-member proceeds.
+    //When multiple clients connect to the Listener, the Listener then holds the incoming requests in a queue.
+    //The clients are arranged in the queue, and the Listener processes their requests one by one as and when queue-member proceeds.
     //The nature of this kind of connection is called queued connection.
 
-    while(listen(server_socket, 5) == -1){//only defines the backlog
+
+
+    while(listen(listener_socket, 5) == -1){//only defines the backlog
         std::cerr << "unable to listen on socket";
         std::cout << "re-attempting to listen \n";
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
@@ -92,33 +96,42 @@ void Server::init(){
 
     //understand why null
 
-    while(true){
-        int client_socket = accept(server_socket, nullptr, nullptr);//extracts first connection on queue
+    // while(true){
+    //     int client_socket = accept(listener_socket, nullptr, nullptr);//extracts first connection on queue
 
-        if(client_socket < 0){
-            fprintf(stderr, "recv: %s (%d)\n", strerror(errno), errno);
-            continue;//retry for next client
-        }
+    //     if(client_socket < 0){
+    //         fprintf(stderr, "recv: %s (%d)\n", strerror(errno), errno);
+    //         continue;//retry for next client
+    //     }
 
-        char buffer[1024] = {0};// 1kb
+    //     char buffer[1024] = {0};// 1kb
 
-        int r = recv(client_socket, buffer, sizeof(buffer), 0);//recieves message from connected socket
+    //     while(true){
+    //         int r = recv(client_socket, buffer, sizeof(buffer), 0);//recieves message from connected socket
 
-        if(r == 0){
-            break;//client discon
-        }else if(r < 0){
-            fprintf(stderr, "recv: %s (%d)\n", strerror(errno), errno);
-            break;
-        }else{
-            //do someting with buffer
-        }
-    }
+    //     }
+
+    //     //if(buff == "conn_request") -> isconn = true;
+    //     // listener tells server they're ready, server sends
+    //     // last recieved message in a string
+
+
+
+    //     // if(r == 0){
+    //     //     break;//client discon
+    //     // }else if(r < 0){
+    //     //     fprintf(stderr, "recv: %s (%d)\n", strerror(errno), errno);
+    //     //     break;
+    //     // }else{
+    //     //     //do someting with buffer
+    //     // }
+    // }
 
 
     //socket, buffer, buffer size, flags
     //
-    close(server_socket);
+    close(listener_socket);
     //closes a file descriptor
 
-    //be both a client and server, server in one thread, client in another
+    //be both a client and Listener, Listener in one thread, client in another
 }

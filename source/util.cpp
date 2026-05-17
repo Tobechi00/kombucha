@@ -10,8 +10,6 @@
 #include <arpa/inet.h>
 #include <vector>
 
-typedef struct { int a; int b; } y;
-
 namespace util{
 
     Subnet get_network_address(){

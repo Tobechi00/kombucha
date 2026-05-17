@@ -16,8 +16,8 @@ project(${PROJECT_NAME})
 FILE(GLOB SRCS "*.cpp" "*.c")
 
 set(SRCS
-    source/client.cpp
-    source/server.cpp
+    source/listener.cpp
+    source/sender.cpp
     source/main.cpp
     source/network.cpp
     source/util.cpp
